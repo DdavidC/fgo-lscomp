@@ -1,0 +1,67 @@
+.contentContainer
+{
+    display: table;
+    border-collapse: separate;
+    border-spacing: 5px;
+}
+
+.content
+{
+    display: table-cell;
+}
+
+table
+{
+    text-align: center;
+    border-spacing: 0px;
+    border-collapse: collapse;
+}
+
+.trLSList
+{
+    padding: 1px 1px;
+    border-spacing: 0px;
+    height: 30px;
+}
+
+.tdLSListNo
+{
+    width: 50px;
+}
+
+.tdLSListName
+{
+    width: 250px;
+}
+
+.tdLSListMax
+{
+    width: 50px;
+}
+
+.tdLSListCost
+{
+    width: 50px;
+}
+
+.trLSDetail
+{
+    padding: 1px 1px;
+    border-spacing: 0px;
+    height: 30px;
+}
+
+.tdLSDetailCheckBox
+{
+    width: 20px;
+}
+
+.tdLSDetail
+{
+    width: 200px;
+}
+
+.hiddenInformation
+{
+    display: none;
+}
