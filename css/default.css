@@ -24,6 +24,22 @@ table
     height: 30px;
 }
 
+.trLSListColID
+{
+    padding: 1px 1px;
+    border-spacing: 0px;
+    height: 30px;
+    /*display: none;*/
+}
+
+.trLSListEffectInfo
+{
+    padding: 1px 1px;
+    border-spacing: 0px;
+    height: 30px;
+    /*display: none;*/
+}
+
 .tdLSListNo
 {
     width: 50px;
@@ -46,7 +62,7 @@ table
 
 .tdLSListOthers
 {
-    display: none;
+    /*display: none;*/
 }
 
 .trLSDetail
@@ -54,25 +70,50 @@ table
     padding: 1px 1px;
     border-spacing: 0px;
     height: 30px;
+    border-width: 1px;
+    border-left-style: solid;
+    border-right-style: solid;
+}
+
+.tdLSDetailTitle
+{
+    width: 20px;
+    border-width: 1px;
+    border-style: solid;
 }
 
 .tdLSDetailCheckBox
 {
     width: 20px;
+    border-width: 1px;
+    border-right-style: solid;
 }
 
 .tdLSDetail
 {
-    width: 200px;
+    width: 250px;
+    border-width: 1px;
+    border-style: solid;
 }
 
-.tdLSDetailID
+.tdLSDetailEffect
+{
+    width: 250px;
+    border-width: 1px;
+    border-right-style: solid;
+    border-top-style: none;
+    border-bottom-style: none;
+}
+
+.tdLSDetailHiddenInfo
 {
     width: 40px;
-    display: none;
+    border-width: 1px;
+    border-style: solid;
+    /*display: none;*/
 }
 
 .hiddenInformation
 {
-    display: none;
+    /*display: none;*/
 }

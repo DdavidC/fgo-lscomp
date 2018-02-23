@@ -27,8 +27,9 @@
 </head>
 <body>
     <div>
-        <input type="button" value="目標下位互換" onclick="setQueryListString(textBoxQueryListString.value)">
-        <input type="button" value="重置" onclick="setQueryListString('reset')">
+        <input type="button" value="下位互換" onclick="setQueryListString(1)">
+        <input type="button" value="上位互換" onclick="setQueryListString(2)">
+        <input type="button" value="重置" onclick="setQueryListString(0)">
         <input type="textbox" id="textBoxQueryListString" class="hiddenInformation">
         <script type="text/javascript">
             var queryListString = decodeURIComponent($.getUrlVar("queryListString"));
@@ -49,7 +50,7 @@
             </table>
         </div>
         <div class="content">
-            <table border="1">
+            <table>
                 <tbody id="tableLSEffect">
                 </tbody>
             </table>

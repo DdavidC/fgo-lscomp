@@ -1,8 +1,10 @@
 function addRowOnClickHandlers(tableID)
 {
+    const ROW_VALUE_START = 5;
+
     var table = document.getElementById(tableID);
 
-    for (i = 3; i < table.rows.length; i++)
+    for (i = ROW_VALUE_START; i < table.rows.length; i++)
     {
         var currentRow = table.rows[i];
         var createOnClickHandler = 

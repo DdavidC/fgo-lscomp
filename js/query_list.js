@@ -17,6 +17,8 @@ function handleQueryListResponse(response)
         const COL_COST = 3;
         const COL_VISIABLE_N_LIST = 4;
 
+        const ROW_VALUE_START = 2;
+
         var data = response.getDataTable();
         var colN = data.getNumberOfColumns();
         var rowN = data.getNumberOfRows();
@@ -26,29 +28,41 @@ function handleQueryListResponse(response)
         $("#tableLSList").append(NewRow);
 
         // Row 1: Column IDs
-        NewRow = "<tr class=\"trLSList\" style=\"display: none\">";
+        NewRow = "<tr class=\"trLSListColID\">";
         for(var j = 0; j < colN; j++)
         {
-            NewRow = NewRow + "<td style=\"display: none\">" + data.getColumnId(j) + "</td>";
+            NewRow += "<td class=\"tdLSListOthers\">" + data.getColumnId(j) + "</td>";
         }
-        NewRow = NewRow + "</tr>";
+        NewRow += "</tr>";
         $("#tableLSList").append(NewRow);
 
         // Row 2: Column names
         NewRow = "<tr class=\"trLSList\">";
         for(var j = 0; j < colN; j++)
         {
-            NewRow = NewRow + "<td";
+            NewRow += "<td";
             if(j >= COL_VISIABLE_N_LIST)
             {
-                NewRow = NewRow + " style=\"display: none\"";
+                NewRow += " class=\"tdLSListOthers\"";
             }
-            NewRow = NewRow + ">" + data.getColumnLabel(j) + "</td>";
+            NewRow += ">" + data.getColumnLabel(j) + "</td>";
         }
-        NewRow = NewRow + "</tr>";
+        NewRow += "</tr>";
         $("#tableLSList").append(NewRow);
 
-        for(var i = 0; i < rowN; i++)
+        // Row 3: Ability information
+        for(var i = 0; i < ROW_VALUE_START; i++)
+        {
+            NewRow = "<tr class=\"trLSListEffectInfo\">";
+            for(var j = 0; j < colN; j++)
+            {
+                NewRow += "<td class=\"tdLSListOthers\">" + data.getValue(i, j) + "</td>";
+            }
+            NewRow += "</tr>";
+            $("#tableLSList").append(NewRow);
+        }
+
+        for(var i = ROW_VALUE_START; i < rowN; i++)
         {
             NewRow = "<tr class=\"trLSList\">";
             for(var j = 0; j < colN; j++)
@@ -56,26 +70,26 @@ function handleQueryListResponse(response)
                 switch(j)
                 {
                     case COL_NO:
-                        NewRow = NewRow + "<td class=\"tdLSListNo\">" + data.getValue(i, j) + "</td>";
+                        NewRow += "<td class=\"tdLSListNo\">" + data.getValue(i, j) + "</td>";
                         break;
 
                     case COL_NAME:
-                        NewRow = NewRow + "<td class=\"tdLSListName\">" + data.getValue(i, j) + "</td>";
+                        NewRow += "<td class=\"tdLSListName\">" + data.getValue(i, j) + "</td>";
                         break;
 
                     case COL_MAX:
-                        NewRow = NewRow + "<td class=\"tdLSListMax\">" + data.getValue(i, j) + "</td>";
+                        NewRow += "<td class=\"tdLSListMax\">" + data.getValue(i, j) + "</td>";
                         break;
                             
                     case COL_COST:
-                        NewRow = NewRow + "<td class=\"tdLSListCost\">" + data.getValue(i, j) + "</td>";
+                        NewRow += "<td class=\"tdLSListCost\">" + data.getValue(i, j) + "</td>";
                         break;
                             
                     default:
-                        NewRow = NewRow + "<td class=\"tdLSListOthers\">" + data.getValue(i, j) + "</td>";
+                        NewRow += "<td class=\"tdLSListOthers\">" + data.getValue(i, j) + "</td>";
                     }
             }
-            NewRow = NewRow + "</tr>";
+            NewRow += "</tr>";
             $("#tableLSList").append(NewRow);
         }
         addRowOnMouseOverHandlers("tableLSList");

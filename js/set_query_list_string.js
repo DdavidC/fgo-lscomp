@@ -1,48 +1,64 @@
-function setQueryListString(queryListString)
+function setQueryListString(func)
 {
     const COL_COST = 3;
+    const COL_COST_ID = "D";
 
     var tableLSList = document.getElementById("tableLSList");
     var tableLSEffect = document.getElementById("tableLSEffect");
     var rowNTableLSEffect = tableLSEffect.rows.length;
     var textBoxSelectedLSListRow = document.getElementById("selectedLSListRow");
-                    
-    if(queryListString == "undefined" || queryListString == "reset")
+    var queryListString = "select *";            
+    var uncheckCost = false;
+
+    if(func != 0)
     {
-        queryListString = "select *";
-    }
-
-    if(textBoxSelectedLSListRow.value != "")
-    {
-        var checkedCheckBoxs = $(tableLSEffect).find("input[type='checkbox']:checked");
-
-        queryListString = "select *";
-
-        if(checkedCheckBoxs.length > 0)
+        if(textBoxSelectedLSListRow.value != "")
         {
-            queryListString = queryListString + " where";
-            
-            for(var i = 0; i < checkedCheckBoxs.length; i++)
+            var checkedCheckBoxs = $(tableLSEffect).find("input[type='checkbox']:checked");
+            var checkedN = checkedCheckBoxs.length;
+
+            queryListString += " where (A = 0) or (";
+
+            if(checkedN == 0)
+            {
+                // Check all
+                checkedCheckBoxs = $(tableLSEffect).find("input[type='checkbox']");
+                checkedN = checkedCheckBoxs.length;
+                // But uncheck the cost
+                uncheckCost = true;
+            }
+            for(var i = 0; i < checkedN; i++)
             {
                 var rowNumber = $(checkedCheckBoxs[i]).parent().parent().index();
-                var attId = tableLSEffect.rows[rowNumber].cells[3].innerHTML;
-                var attValue = tableLSEffect.rows[rowNumber].cells[2].innerHTML;
+                var effectId = tableLSEffect.rows[rowNumber].cells[3].innerHTML;
+                var effectValue = tableLSEffect.rows[rowNumber].cells[2].innerHTML;
+                var effectSmallerOrLarger = Number(tableLSEffect.rows[rowNumber].cells[4].innerHTML);
 
-                queryListString = queryListString + " " + attId;
-                // Special cases
-                if(i == COL_COST) // Always try to find better cost
+                if(uncheckCost && effectId == COL_COST_ID)
                 {
-                    queryListString = queryListString + " <= ";
+                    continue;
+                }
+                queryListString += " " + effectId;
+                // Smaller of larger is better
+                if(effectSmallerOrLarger == func)
+                {
+                    // Smaller is better
+                    queryListString += " >= ";
                 }
                 else
                 {
-                    queryListString = queryListString + " <= ";
+                    // Larger is better
+                    queryListString += " <= ";
                 }
-                queryListString = queryListString + attValue + " and " + attId + " is not null";
+                queryListString += effectValue + " and " + effectId + " is not null";
 
                 if(i != checkedCheckBoxs.length - 1)
                 {
-                    queryListString = queryListString + " and";
+                    queryListString += " and";
+                }
+                else
+                {
+                    queryListString += ")";
                 }
             }
         }
