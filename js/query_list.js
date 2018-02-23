@@ -1,6 +1,6 @@
 function queryList(queryListString)
 {
-    var URL = "http://spreadsheets.google.com/tq?key=1zSn8a5H8MucOkk7b4g-xVNCl-u2YQea6VyhIypVEayw";
+    var URL = "https://spreadsheets.google.com/tq?key=1zSn8a5H8MucOkk7b4g-xVNCl-u2YQea6VyhIypVEayw";
     var query = new google.visualization.Query(URL);
     
     query.setQuery(queryListString);
