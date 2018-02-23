@@ -44,6 +44,11 @@ table
     width: 50px;
 }
 
+.tdLSListOthers
+{
+    display: none;
+}
+
 .trLSDetail
 {
     padding: 1px 1px;
@@ -59,6 +64,12 @@ table
 .tdLSDetail
 {
     width: 200px;
+}
+
+.tdLSDetailID
+{
+    width: 40px;
+    display: none;
 }
 
 .hiddenInformation

@@ -2,7 +2,7 @@ function addRowOnClickHandlers(tableID)
 {
     var table = document.getElementById(tableID);
 
-    for (i = 2; i < table.rows.length; i++)
+    for (i = 3; i < table.rows.length; i++)
     {
         var currentRow = table.rows[i];
         var createOnClickHandler = 
@@ -17,7 +17,7 @@ function addRowOnClickHandlers(tableID)
                     {
                         $(this).css("background", "red");
                         textBoxSelectedLSListRow.value = $(this).index();
-                        setQueryDetailString(this);
+                        showLSDetail(this);
                     }
                     else
                     {
@@ -26,7 +26,7 @@ function addRowOnClickHandlers(tableID)
                         {
                             $(this).css("background", "red");
                             textBoxSelectedLSListRow.value = $(this).index();
-                            setQueryDetailString(this);
+                            showLSDetail(this);
                         }
                         else
                         {

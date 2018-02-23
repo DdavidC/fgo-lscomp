@@ -2,7 +2,7 @@ function addRowOnMouseOverHandlers(tableID)
 {
     var table = document.getElementById(tableID);
 
-    for (i = 2; i < table.rows.length; i++)
+    for (i = 3; i < table.rows.length; i++)
     {
         var currentRow = table.rows[i];
         var createMouseOverHandler = 
@@ -14,7 +14,7 @@ function addRowOnMouseOverHandlers(tableID)
                     
                     if(textBoxSelectedLSListRow.value == "")
                     {
-                        setQueryDetailString(this);
+                        showLSDetail(this);
                     }
                 };
             };

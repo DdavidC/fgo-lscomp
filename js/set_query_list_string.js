@@ -1,6 +1,6 @@
 function setQueryListString(queryListString)
 {
-    const ROW_COST = 4;
+    const COL_COST = 3;
 
     var tableLSList = document.getElementById("tableLSList");
     var tableLSEffect = document.getElementById("tableLSEffect");
@@ -9,14 +9,14 @@ function setQueryListString(queryListString)
                     
     if(queryListString == "undefined" || queryListString == "reset")
     {
-        queryListString = "select A, B, C, D";
+        queryListString = "select *";
     }
 
     if(textBoxSelectedLSListRow.value != "")
     {
         var checkedCheckBoxs = $(tableLSEffect).find("input[type='checkbox']:checked");
 
-        queryListString = "select A, B, C, D";
+        queryListString = "select *";
 
         if(checkedCheckBoxs.length > 0)
         {
@@ -28,7 +28,18 @@ function setQueryListString(queryListString)
                 var attId = tableLSEffect.rows[rowNumber].cells[3].innerHTML;
                 var attValue = tableLSEffect.rows[rowNumber].cells[2].innerHTML;
 
-                queryListString = queryListString + " " + attId + " <= " + attValue + " and " + attId + " is not null";
+                queryListString = queryListString + " " + attId;
+                // Special cases
+                if(i == COL_COST) // Always try to find better cost
+                {
+                    queryListString = queryListString + " <= ";
+                }
+                else
+                {
+                    queryListString = queryListString + " <= ";
+                }
+                queryListString = queryListString + attValue + " and " + attId + " is not null";
+
                 if(i != checkedCheckBoxs.length - 1)
                 {
                     queryListString = queryListString + " and";

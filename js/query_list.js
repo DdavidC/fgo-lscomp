@@ -15,19 +15,35 @@ function handleQueryListResponse(response)
         const COL_NAME = 1;
         const COL_MAX = 2
         const COL_COST = 3;
-        const COL_N_LIST = 4;
+        const COL_VISIABLE_N_LIST = 4;
 
         var data = response.getDataTable();
         var colN = data.getNumberOfColumns();
         var rowN = data.getNumberOfRows();
 
-        NewRow = "<tr class=\"trLSList\"><td colspan=\"" + COL_N_LIST + "\">禮裝列表</td></tr>";
+        // Row 0: Table title
+        NewRow = "<tr class=\"trLSList\"><td colspan=\"" + COL_VISIABLE_N_LIST + "\">禮裝列表</td></tr>";
         $("#tableLSList").append(NewRow);
 
-        NewRow = "<tr class=\"trLSList\">";
-        for(var j = 0; j < COL_N_LIST; j++)
+        // Row 1: Column IDs
+        NewRow = "<tr class=\"trLSList\" style=\"display: none\">";
+        for(var j = 0; j < colN; j++)
         {
-            NewRow = NewRow + "<td>" + data.getColumnLabel(j) + "</td>";
+            NewRow = NewRow + "<td style=\"display: none\">" + data.getColumnId(j) + "</td>";
+        }
+        NewRow = NewRow + "</tr>";
+        $("#tableLSList").append(NewRow);
+
+        // Row 2: Column names
+        NewRow = "<tr class=\"trLSList\">";
+        for(var j = 0; j < colN; j++)
+        {
+            NewRow = NewRow + "<td";
+            if(j >= COL_VISIABLE_N_LIST)
+            {
+                NewRow = NewRow + " style=\"display: none\"";
+            }
+            NewRow = NewRow + ">" + data.getColumnLabel(j) + "</td>";
         }
         NewRow = NewRow + "</tr>";
         $("#tableLSList").append(NewRow);
@@ -35,36 +51,29 @@ function handleQueryListResponse(response)
         for(var i = 0; i < rowN; i++)
         {
             NewRow = "<tr class=\"trLSList\">";
-            for(var j = 0; j < COL_N_LIST; j++)
+            for(var j = 0; j < colN; j++)
             {
-                if(data.getValue(i, j) != null)
+                switch(j)
                 {
-                    switch(j)
-                    {
-                        case COL_NO:
-                            NewRow = NewRow + "<td class=\"tdLSListNo\">" + data.getValue(i, j) + "</td>";
-                            break;
+                    case COL_NO:
+                        NewRow = NewRow + "<td class=\"tdLSListNo\">" + data.getValue(i, j) + "</td>";
+                        break;
 
-                        case COL_NAME:
-                            NewRow = NewRow + "<td class=\"tdLSListName\">" + data.getValue(i, j) + "</td>";
-                            break;
+                    case COL_NAME:
+                        NewRow = NewRow + "<td class=\"tdLSListName\">" + data.getValue(i, j) + "</td>";
+                        break;
 
-                        case COL_MAX:
-                            NewRow = NewRow + "<td class=\"tdLSListMax\">" + data.getValue(i, j) + "</td>";
-                            break;
+                    case COL_MAX:
+                        NewRow = NewRow + "<td class=\"tdLSListMax\">" + data.getValue(i, j) + "</td>";
+                        break;
                             
-                        case COL_COST:
-                            NewRow = NewRow + "<td class=\"tdLSListCost\">" + data.getValue(i, j) + "</td>";
-                            break;
+                    case COL_COST:
+                        NewRow = NewRow + "<td class=\"tdLSListCost\">" + data.getValue(i, j) + "</td>";
+                        break;
                             
-                        default:
-                            NewRow = NewRow + "<td>" + data.getValue(i, j) + "</td>";
+                    default:
+                        NewRow = NewRow + "<td class=\"tdLSListOthers\">" + data.getValue(i, j) + "</td>";
                     }
-                }
-                else
-                {
-                    NewRow = NewRow + "<td></td>";
-                }
             }
             NewRow = NewRow + "</tr>";
             $("#tableLSList").append(NewRow);
