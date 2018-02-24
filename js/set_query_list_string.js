@@ -1,7 +1,12 @@
 function setQueryListString(func)
 {
-    const COL_COST = 3;
-    const COL_COST_ID = "D";
+    const COL_ID = 0;
+    const COL_COST = 4;
+    const COL_COST_ID = "E";
+
+    const COL_EFFECT_ID = 3;
+    const COL_EFFECT_VALUE = 2;
+    const COL_EFFECT_S_OR_L = 4;
 
     var tableLSList = document.getElementById("tableLSList");
     var tableLSEffect = document.getElementById("tableLSEffect");
@@ -10,59 +15,62 @@ function setQueryListString(func)
     var queryListString = "select *";            
     var uncheckCost = false;
 
-    if(func != 0)
+    var newURL = "fgo-lscomp.html";
+
+    if(func != 0 && textBoxSelectedLSListRow.value != "")
     {
-        if(textBoxSelectedLSListRow.value != "")
+        var checkedCheckBoxs = $(tableLSEffect).find("input[type='checkbox']:checked");
+        var checkedN = checkedCheckBoxs.length;
+
+        newURL += "?queryListString=";
+
+        queryListString += " where (A = 0) or (";
+
+        if(checkedN == 0)
         {
-            var checkedCheckBoxs = $(tableLSEffect).find("input[type='checkbox']:checked");
-            var checkedN = checkedCheckBoxs.length;
+            // Check all
+            checkedCheckBoxs = $(tableLSEffect).find("input[type='checkbox']");
+            checkedN = checkedCheckBoxs.length;
+            // But uncheck the cost
+            uncheckCost = true;
+        }
+        for(var i = 0; i < checkedN; i++)
+        {
+            var rowNumber = $(checkedCheckBoxs[i]).parent().parent().index();
+            var effectId = tableLSEffect.rows[rowNumber].cells[COL_EFFECT_ID].innerHTML;
+            var effectValue = tableLSEffect.rows[rowNumber].cells[COL_EFFECT_VALUE].innerHTML;
+            var effectSmallerOrLarger = Number(tableLSEffect.rows[rowNumber].cells[COL_EFFECT_S_OR_L].innerHTML);
 
-            queryListString += " where (A = 0) or (";
-
-            if(checkedN == 0)
+            if(uncheckCost && effectId == COL_COST_ID)
             {
-                // Check all
-                checkedCheckBoxs = $(tableLSEffect).find("input[type='checkbox']");
-                checkedN = checkedCheckBoxs.length;
-                // But uncheck the cost
-                uncheckCost = true;
+                continue;
             }
-            for(var i = 0; i < checkedN; i++)
+            queryListString += " " + effectId;
+            // Smaller of larger is better
+            if(effectSmallerOrLarger == func)
             {
-                var rowNumber = $(checkedCheckBoxs[i]).parent().parent().index();
-                var effectId = tableLSEffect.rows[rowNumber].cells[3].innerHTML;
-                var effectValue = tableLSEffect.rows[rowNumber].cells[2].innerHTML;
-                var effectSmallerOrLarger = Number(tableLSEffect.rows[rowNumber].cells[4].innerHTML);
+                // Smaller is better
+                queryListString += " >= ";
+            }
+            else
+            {
+                // Larger is better
+                queryListString += " <= ";
+            }
+            queryListString += effectValue + " and " + effectId + " is not null";
 
-                if(uncheckCost && effectId == COL_COST_ID)
-                {
-                    continue;
-                }
-                queryListString += " " + effectId;
-                // Smaller of larger is better
-                if(effectSmallerOrLarger == func)
-                {
-                    // Smaller is better
-                    queryListString += " >= ";
-                }
-                else
-                {
-                    // Larger is better
-                    queryListString += " <= ";
-                }
-                queryListString += effectValue + " and " + effectId + " is not null";
-
-                if(i != checkedCheckBoxs.length - 1)
-                {
-                    queryListString += " and";
-                }
-                else
-                {
-                    queryListString += ")";
-                }
+            if(i != checkedCheckBoxs.length - 1)
+            {
+                queryListString += " and";
+            }
+            else
+            {
+                queryListString += ")";
             }
         }
+        newURL += encodeURIComponent(queryListString);
+        newURL += "&targetLS=" + tableLSList.rows[Number(textBoxSelectedLSListRow.value)].cells[COL_ID].innerHTML;
     }
-    queryListString = encodeURIComponent(queryListString);
-    window.location.replace("fgo-lscomp.html?queryListString=" + queryListString);
+
+    window.location.replace(newURL);
 }

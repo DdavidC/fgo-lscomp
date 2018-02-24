@@ -29,7 +29,7 @@ table
     padding: 1px 1px;
     border-spacing: 0px;
     height: 30px;
-    /*display: none;*/
+    display: none;
 }
 
 .trLSListEffectInfo
@@ -37,12 +37,18 @@ table
     padding: 1px 1px;
     border-spacing: 0px;
     height: 30px;
-    /*display: none;*/
+    display: none;
 }
 
 .tdLSListNo
 {
     width: 50px;
+}
+
+.tdLSListImg
+{
+    padding-top: 4px;
+    padding-bottom: 0px;
 }
 
 .tdLSListName
@@ -62,7 +68,13 @@ table
 
 .tdLSListOthers
 {
-    /*display: none;*/
+    display: none;
+}
+
+.imgLSSmall
+{
+    height: 64px;
+    width: 64px;
 }
 
 .trLSDetail
@@ -110,10 +122,15 @@ table
     width: 40px;
     border-width: 1px;
     border-style: solid;
-    /*display: none;*/
+    display: none;
+}
+
+.imgLSDetail
+{
+    width: 200px;
 }
 
 .hiddenInformation
 {
-    /*display: none;*/
+    display: none;
 }

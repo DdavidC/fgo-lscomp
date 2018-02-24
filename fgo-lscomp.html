@@ -20,6 +20,7 @@
     <script type="text/javascript" src="js/show_ls_detail.js"></script>
     <script type="text/javascript" src="js/add_row_onmouseover_handlers.js"></script>
     <script type="text/javascript" src="js/add_row_onclick_handlers.js"></script>
+    <script type="text/javascript" src="js/page_init.js"></script>
 
     <style type="text/css">
         @import url(css/default.css);
@@ -27,22 +28,18 @@
 </head>
 <body>
     <div>
-        <input type="button" value="下位互換" onclick="setQueryListString(1)">
-        <input type="button" value="上位互換" onclick="setQueryListString(2)">
-        <input type="button" value="重置" onclick="setQueryListString(0)">
-        <input type="textbox" id="textBoxQueryListString" class="hiddenInformation">
-        <script type="text/javascript">
-            var queryListString = decodeURIComponent($.getUrlVar("queryListString"));
-            
-            if(queryListString == "undefined")
-            {
-                queryListString = "select *";
-            }
-
-            document.getElementById("textBoxQueryListString").value = queryListString;
-        </script>
+        目前所使用的所有禮裝圖片檔皆暫借自「<a href="https://kazemai.github.io/fgo-vz/">Fate/GO 茹西教王的理想鄉</a>」網站！
     </div>
+    <br>
     <div class="contentContainer">
+        <div>
+            使用的Google試算表key：<br>
+            <input type="textbox" id="googleSheetKey" size="64" value="1zSn8a5H8MucOkk7b4g-xVNCl-u2YQea6VyhIypVEayw"><br>
+            <br>
+            <input type="button" value="下位互換" onclick="setQueryListString(1)">
+            <input type="button" value="上位互換" onclick="setQueryListString(2)">
+            <input type="button" value="重置" onclick="setQueryListString(0)">
+        </div>
         <div class="content">
             <table border="1">
                 <tbody id="tableLSList">
@@ -56,11 +53,12 @@
             </table>
         </div>
     </div>
-    <script type="text/javascript">
-        queryList(document.getElementById("textBoxQueryListString").value);
-    </script>
     <div class="hiddenInformation">
+        <input type="textbox" id="textBoxQueryListString">
         <input type="textbox" id="selectedLSListRow">
     </div>
+    <script type="text/javascript">
+        pageInit();
+    </script>
 </body>
 </html>

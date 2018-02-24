@@ -5,7 +5,9 @@ function showLSDetail(currentRow)
     const ROW_UNIT_NAME = 3;
     const ROW_SMALLER_OR_LARGER = 4;
 
-    const COL_COMPARABLE_START = 3;
+    const COL_NO = 0;
+    const COL_IMG = 1;
+    const COL_COMPARABLE_START = 4;
 
     var tableLSEffect = document.getElementById("tableLSEffect");
     var colN = currentRow.cells.length;
@@ -38,7 +40,13 @@ function showLSDetail(currentRow)
             }
             NewRow += ">";
 
-            if(i >= COL_COMPARABLE_START)
+            if(i == COL_IMG)
+            {
+                NewRow += "<td class=\"tdLSDetailCheckBox\"></td>";
+                NewRow += "<td class=\"tdLSDetail\">" + getValueFromTable("tableLSList", 2, i) + "</td>";
+                NewRow += "<td class=\"tdLSDetail\"><img class=\"imgLSDetail\" src=\"img/" + currentRow.cells[COL_NO].innerHTML + ".png\"></td>";
+            }
+            else if(i >= COL_COMPARABLE_START)
             {
                 NewRow += "<td class=\"tdLSDetailCheckBox\">";
                 NewRow += "<input type=\"checkbox\">";
