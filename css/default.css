@@ -1,13 +1,23 @@
-.contentContainer
+#divUpperContainer
 {
-    display: table;
+    height: 15vh;
+}
+
+#divFunctions
+{
+}
+
+#divContentContainer
+{
+    height: 80vh;
     border-collapse: separate;
     border-spacing: 5px;
 }
 
-.content
+.divContent
 {
-    display: table-cell;
+    display: inline-block;
+    vertical-align: top;
 }
 
 table
@@ -15,6 +25,12 @@ table
     text-align: center;
     border-spacing: 0px;
     border-collapse: collapse;
+}
+
+.divTableLSList
+{
+    height: 100%;
+    overflow-y: auto;
 }
 
 .trLSList

@@ -27,26 +27,29 @@
     </style>
 </head>
 <body>
-    <div>
-        目前所使用的所有禮裝圖片檔皆暫借自「<a href="https://kazemai.github.io/fgo-vz/">Fate/GO 茹西教王的理想鄉</a>」網站！
-    </div>
-    <br>
-    <div class="contentContainer">
+    <div id="divUpperContainer">
         <div>
-            使用的Google試算表key：<br>
+            目前所使用的所有禮裝圖片檔皆暫借自「<a href="https://kazemai.github.io/fgo-vz/">Fate/GO 茹西教王的理想鄉</a>」網站！
+        </div>
+        <br>
+        <div id="divFunctions" class="content">
+            目前使用的Google試算表key：<br>
             <input type="textbox" id="googleSheetKey" size="64" value="1zSn8a5H8MucOkk7b4g-xVNCl-u2YQea6VyhIypVEayw"><br>
             <br>
             <input type="button" value="下位互換" onclick="setQueryListString(1)">
             <input type="button" value="上位互換" onclick="setQueryListString(2)">
             <input type="button" value="重置" onclick="setQueryListString(0)">
         </div>
-        <div class="content">
+    </div>
+    <br>
+    <div id="divContentContainer">
+        <div class="divTableLSList divContent">
             <table border="1">
                 <tbody id="tableLSList">
                 </tbody>
             </table>
         </div>
-        <div class="content">
+        <div class="divContent">
             <table>
                 <tbody id="tableLSEffect">
                 </tbody>
