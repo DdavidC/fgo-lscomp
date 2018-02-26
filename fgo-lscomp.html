@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Fate/GO禮裝比較</title>
+    <title>Fate/GO禮裝比較搜尋系統</title>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart'], 'language': 'zh' }]}"></script>
@@ -33,13 +33,14 @@
         </div>
         <br>
         <div id="divFunctions" class="content">
-            目前使用的Google試算表key：<br>
-            <input type="textbox" id="googleSheetKey" size="64" value="1zSn8a5H8MucOkk7b4g-xVNCl-u2YQea6VyhIypVEayw"><br>
-            <br>
             <input type="button" value="下位互換" onclick="setQueryListString(1)">
             <input type="button" value="上位互換" onclick="setQueryListString(2)">
 			<input type="button" value="相似功能" onclick="setQueryListString(3)">
             <input type="button" value="重置" onclick="setQueryListString(0)">
+            <br>
+            <br>
+            目前使用的Google試算表key：<br>
+            <input type="textbox" id="googleSheetKey" size="64" value="1zSn8a5H8MucOkk7b4g-xVNCl-u2YQea6VyhIypVEayw"><br>
         </div>
     </div>
     <br>

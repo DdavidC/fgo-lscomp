@@ -1,6 +1,8 @@
 #divUpperContainer
 {
     height: 15vh;
+    width: 800px;
+    overflow-y: auto;
 }
 
 #divFunctions
