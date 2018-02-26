@@ -46,18 +46,27 @@ function setQueryListString(func)
                 continue;
             }
             queryListString += " " + effectId;
-            // Smaller of larger is better
-            if(effectSmallerOrLarger == func)
+
+            if(func == 1 || func == 2)
             {
-                // Smaller is better
-                queryListString += " >= ";
+                // Smaller(1) or larger(2) is better
+                if(effectSmallerOrLarger == func)
+                {
+                    // Smaller is better
+                    queryListString += " >= ";
+                }
+                else
+                {
+                    // Larger is better
+                    queryListString += " <= ";
+                }
+                queryListString += effectValue + " and " + effectId + " is not null";
             }
-            else
+            else if(func == 3)
             {
-                // Larger is better
-                queryListString += " <= ";
+                // Similar effect
+                queryListString += " is not null";
             }
-            queryListString += effectValue + " and " + effectId + " is not null";
 
             if(i != checkedCheckBoxs.length - 1)
             {
