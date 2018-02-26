@@ -24,8 +24,10 @@ function handleQueryListResponse(response)
         const COL_MAX = 3;
         const COL_COST = 4;
         const COL_VISIABLE_N_LIST = 5;
+        const COL_EFFECT_START = 5;
 
         const ROW_VALUE_START = 2;
+        const ROW_EFFECT_VALUE_N = 0;
 
         var data = response.getDataTable();
         var colN = data.getNumberOfColumns();
@@ -125,6 +127,29 @@ function handleQueryListResponse(response)
             }
             currentRow = table.rows[i];
             currentRow.onclick();
+        }
+
+        // Set selectEffect options
+        var newOption;
+
+        for(var j = COL_EFFECT_START; j < colN; j++)
+        {
+            newOption = "<option value=\"" + data.getColumnId(j) + "\">" + data.getColumnLabel(j);
+            if(data.getValue(ROW_EFFECT_VALUE_N, j) > 1)
+            {
+                newOption += "（";
+                for(var k = data.getValue(ROW_EFFECT_VALUE_N, j) - 1; k >= 1; k--, j++)
+                {
+                    newOption += data.getColumnLabel(j + 1);
+                    if(k != 1)
+                    {
+                        newOption += "、";
+                    }
+                }
+                newOption += "）";
+            }
+            newOption += "</option>";
+            $("#selectEffect").append(newOption);
         }
     }
     else

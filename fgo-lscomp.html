@@ -33,10 +33,14 @@
         </div>
         <br>
         <div id="divFunctions" class="content">
-            <input type="button" value="下位互換" onclick="setQueryListString(1)">
-            <input type="button" value="上位互換" onclick="setQueryListString(2)">
-			<input type="button" value="相似功能" onclick="setQueryListString(3)">
-            <input type="button" value="重置" onclick="setQueryListString(0)">
+            <input type="button" class="buttonFunction" value="下位互換" onclick="setQueryListString(1)">
+            <input type="button" class="buttonFunction" value="上位互換" onclick="setQueryListString(2)">
+            <input type="button" class="buttonFunction" value="相似效果" onclick="setQueryListString(3)">
+            <br>
+            <input type="button" class="buttonFunction" value="單項效果搜尋" onclick="setQueryListString(4)">
+            <select name="單項效果搜尋" id="selectEffect"></select>
+            <br>
+            <input type="button" class="buttonFunction" value="重置" onclick="setQueryListString(0)">
             <br>
             <br>
             目前使用的Google試算表key：<br>

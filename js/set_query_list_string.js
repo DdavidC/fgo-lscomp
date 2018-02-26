@@ -17,7 +17,17 @@ function setQueryListString(func)
 
     var newURL = "fgo-lscomp.html";
 
-    if(func != 0 && textBoxSelectedLSListRow.value != "")
+    if(func == 4)
+    {
+        newURL += "?queryListString=";
+
+        queryListString += " where (A = 0) or (";
+        selectEffect = document.getElementById("selectEffect");
+        queryListString += selectEffect.options[selectEffect.selectedIndex].value + " is not null)";
+
+        newURL += encodeURIComponent(queryListString);
+    }
+    else if(func != 0 && textBoxSelectedLSListRow.value != "")
     {
         var checkedCheckBoxs = $(tableLSEffect).find("input[type='checkbox']:checked");
         var checkedN = checkedCheckBoxs.length;
@@ -77,6 +87,7 @@ function setQueryListString(func)
                 queryListString += ")";
             }
         }
+
         newURL += encodeURIComponent(queryListString);
         newURL += "&targetLS=" + tableLSList.rows[Number(textBoxSelectedLSListRow.value)].cells[COL_ID].innerHTML;
     }

@@ -9,6 +9,11 @@
 {
 }
 
+.buttonFunction
+{
+    margin: 3px 3px;
+}
+
 #divContentContainer
 {
     height: 80vh;
