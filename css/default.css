@@ -1,8 +1,9 @@
 #divUpperContainer
 {
-    height: 15vh;
+    height: 20vh;
     width: 90vw;
     overflow-y: auto;
+    font-size: 10px;
 }
 
 #divFunctions
@@ -12,19 +13,20 @@
 .buttonFunction
 {
     margin: 3px 3px;
+    font-size: 10px;
 }
 
 #divContentContainer
 {
-    height: 80vh;
+    height: 75vh;
     border-collapse: separate;
     border-spacing: 5px;
 }
 
 .divContent
 {
-    display: inline-block;
     vertical-align: top;
+    display: inline-block;
 }
 
 table
@@ -76,7 +78,7 @@ table
 
 .tdLSListName
 {
-    width: 250px;
+    width: 200px;
 }
 
 .tdLSListMax
@@ -126,14 +128,14 @@ table
 
 .tdLSDetail
 {
-    width: 250px;
+    width: 200px;
     border-width: 1px;
     border-style: solid;
 }
 
 .tdLSDetailEffect
 {
-    width: 250px;
+    width: 200px;
     border-width: 1px;
     border-right-style: solid;
     border-top-style: none;
@@ -150,7 +152,7 @@ table
 
 .imgLSDetail
 {
-    width: 200px;
+    width: 180px;
 }
 
 .hiddenInformation
